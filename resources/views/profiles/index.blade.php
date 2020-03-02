@@ -5,7 +5,7 @@
   <div class="row">
   <div class="col-3 p-5">
    <!-- <img src="https://source.unsplash.com/200x200/?instagram" class="rounded-circle"/> -->
-   <img src="https://qph.fs.quoracdn.net/main-qimg-eada0af1ba55ed58034e4a828dda8403" style="height: 200px; width: 200px" class="rounded-circle"/>
+   <img src="{{ $user->profile->profileImage() }}" class="rounded-circle w-100"/>
   </div>
   <div class="col-9 pt-5">
   <div class="d-flex justify-content-between align-items-baseline">
