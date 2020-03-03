@@ -15,18 +15,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'username','password',
-    ];
+    protected $fillable = ['name', 'email', 'username', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
@@ -34,16 +30,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::created(function ($user){
+        static::created(function ($user) {
             $user->profile()->create([
-                'title' => $user->username,
+                'title' => $user->username
             ]);
         });
     }
@@ -51,8 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
+
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
     public function profile()
     {
-       return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class);
     }
 }
