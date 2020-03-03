@@ -20,8 +20,10 @@ class PostsController extends Controller
             ->pluck('profiles.user_id');
 
         $posts = Post::whereIn('user_id', $users)
+            ->with('user')
             ->latest()
-            ->get();
+            // ->get();  to get all the post, but now we want to use paginate
+            ->paginate(5);
 
         return view('posts.index', compact('posts'));
     }

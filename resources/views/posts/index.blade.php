@@ -17,8 +17,6 @@
  
   <div class="col-6 offset-3">
     <div>
-     
-     
          <p>
            <span class="font-weight-bold">
              <a href="/profile/{{ $post->user->id }}">
@@ -33,5 +31,11 @@
   </div>
 </div>
 @endforeach
+
+<div class="row">
+  <div class="col-12 d-flex justify-content-center" >
+    {{ $posts->links() }}
+  </div>
+</div>
 </div>
 @endsection
